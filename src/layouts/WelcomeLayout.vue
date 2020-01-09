@@ -1,5 +1,5 @@
 <template lang="pug">
-  q-layout(view="lHh Lpr lFf")
+  q-layout.welcome-layout(view="lHh Lpr lFf")
     q-header.app-header(elevated)
       q-toolbar
         q-btn(
@@ -12,23 +12,52 @@
         )
 
         q-toolbar-title
-          router-link(to="/") Blue - Quasar App
+          router-link(to="/") Blue
 
         div Quasar v{{ $q.version }}
 
-    q-drawer(
+    q-drawer.left-drawer(
       v-model="leftDrawerOpen"
       show-if-above
       bordered
       dark
     )
       q-list
+        q-item-label(header) Blue Links
 
+        q-item(clickable tag="a" target="_blank" href="https://github.com/jbizzay/blue-api")
+          q-item-section(avatar)
+            q-icon(name="fas fa-file")
+          q-item-section
+            q-item-label Installation
+
+        q-item(clickable tag="a" target="_blank" href="https://github.com/jbizzay/blue-api")
+          q-item-section(avatar)
+            q-icon(name="fab fa-github")
+          q-item-section
+            q-item-label Blue API Github
+            q-item-label(caption) github.com/jbizzay/blue-api
+
+        q-item(clickable tag="a" target="_blank" href="https://github.com/jbizzay/blue-client")
+          q-item-section(avatar)
+            q-icon(name="fab fa-github")
+          q-item-section
+            q-item-label Blue Client Github
+            q-item-label(caption) github.com/jbizzay/blue-client
+
+        q-item(clickable tag="a" target="_blank" href="https://github.com/jbizzay/blue-quasar")
+          q-item-section(avatar)
+            q-icon(name="fab fa-github")
+          q-item-section
+            q-item-label Blue Quasar components Github
+            q-item-label(caption) github.com/jbizzay/blue-quasar
+
+      q-list
         q-item-label(header) Quasar Links
 
         q-item(clickable tag="a" target="_blank" href="https://quasar.dev/start/pick-quasar-flavour")
           q-item-section(avatar)
-            q-icon(name="fas fa-school")
+            q-icon(name="fas fa-file-alt")
           q-item-section
             q-item-label Docs
             q-item-label(caption) quasar.dev/start/pick-quasar-flavor
@@ -69,6 +98,23 @@
             q-item-label(caption) @QuasarFramework
 
       q-list
+        q-item-label(header) Laravel Links
+
+        q-item(clickable tag="a" target="_blank" href="https://laravel.com/docs/6.x")
+          q-item-section(avatar)
+            q-icon(name="fas fa-file-alt")
+          q-item-section
+            q-item-label Docs
+            q-item-label(caption) laravel.com/docs/6.x
+
+        q-item(clickable tag="a" target="_blank" href="https://laracasts.com/discuss")
+          q-item-section(avatar)
+            q-icon(name="fas fa-comments")
+          q-item-section
+            q-item-label Forum
+            q-item-label(caption) laracasts.com/discuss
+
+      q-list
         q-item-label(header) Other Packages and Tools
 
         q-item(clickable tag="a" target="_blank" href="https://pugjs.org")
@@ -98,7 +144,7 @@
 
 <script>
 export default {
-  name: 'MyLayout',
+  name: 'WelcomeLayout',
 
   data () {
     return {
@@ -109,8 +155,20 @@ export default {
 </script>
 
 <style lang="stylus">
-  .app-header
-    .q-toolbar__title a
-      color inherit
-      text-decoration none
+  .welcome-layout
+    .app-header
+      .q-toolbar__title a
+        color inherit
+        text-decoration none
+    .left-drawer
+      .q-item__label--header
+        background-color $blue-grey-10
+        color #fff
+      .q-item__label--caption
+        color #fff
+      .q-list
+        margin-bottom 12px
+    .q-page-container
+      .q-page
+        padding 12px
 </style>
