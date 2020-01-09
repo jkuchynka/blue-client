@@ -6,13 +6,16 @@ module.exports = function (ctx) {
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     // https://quasar.dev/quasar-cli/cli-documentation/boot-files
+    // quasar new boot app
     boot: [
       'i18n',
-      'axios'
+      'axios',
+      'app'
     ],
 
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css
     css: [
+      '~prismjs/themes/prism-dark.css',
       'app.styl'
     ],
 

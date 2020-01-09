@@ -25,7 +25,7 @@
       q-list
         q-item-label(header) Blue Links
 
-        q-item(clickable tag="a" target="_blank" href="https://github.com/jbizzay/blue-api")
+        q-item(clickable tag="a" target="_blank" :to="{ name: 'installation' }")
           q-item-section(avatar)
             q-icon(name="fas fa-file")
           q-item-section
@@ -137,6 +137,13 @@
           q-item-section
             q-item-label Font Awesome
             q-item-label(caption) fontawesome.com/icons?d=gallery&m=free
+
+        q-item(clickable tag="a" target="_blank" href="https://prismjs.com/")
+          q-item-section(avatar)
+            q-icon(name="fab fa-js")
+          q-item-section
+            q-item-label PrismJS
+            q-item-label(caption) prismjs.com
 
     q-page-container
       router-view

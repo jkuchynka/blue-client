@@ -4,7 +4,9 @@ const routes = [
     path: '/',
     component: () => import('layouts/WelcomeLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/Welcome.vue') }
+      { path: '', component: () => import('pages/Welcome.vue') },
+      { path: 'installation', name: 'installation', component: () => import('pages/Installation.vue') },
+      { path: 'blue-quasar-components', name: 'blue-quasar-components', component: () => import('pages/BlueQuasarComponents.vue') }
     ]
   }
 ]

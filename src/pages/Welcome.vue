@@ -24,7 +24,7 @@
     ul
       li Laravel 6.x
       li Tymon jwt-auth
-    q-btn(size="lg" color="primary" icon-right="fas fa-arrow-right") Installation
+    q-btn(size="lg" color="primary" icon-right="fas fa-arrow-right" :to="{ name: 'installation' }") Installation
 </template>
 
 <script>
