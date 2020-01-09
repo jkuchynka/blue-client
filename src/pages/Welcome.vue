@@ -2,7 +2,7 @@
   q-page.welcome
     p
       span.text-h1.text-blue.q-mr-sm.blue Blue
-      | is a starter app built with Quasar (VueJS) and Laravel. The frontend and the backend are separate projects, which allows for using them separately. Together, they provide a fully working auth and admin. Check out the readme of each project on github for installation instructions.
+      | is a starter app built with Quasar (VueJS) and Laravel. The frontend and the backend are separate projects, which allows for using them separately. Together, they provide a fully working landing page, auth and admin. The app is setup as a SPA, with a Laravel API.
     h2 Features
     ul
       li Login
@@ -11,8 +11,7 @@
       li JWT
       li Admin dashboard
       li Administer users
-    h2 Tools
-    p Here are the packages and tools used by Blue
+    h2 Packages and tools used by Blue
     h3 Frontend
     ul
       li Quasar 1.x

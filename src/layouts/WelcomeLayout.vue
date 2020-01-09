@@ -25,11 +25,17 @@
       q-list
         q-item-label(header) Blue Links
 
-        q-item(clickable tag="a" target="_blank" :to="{ name: 'installation' }")
+        q-item(clickable tag="a" :to="{ name: 'installation' }")
           q-item-section(avatar)
             q-icon(name="fas fa-file")
           q-item-section
             q-item-label Installation
+
+        q-item(clickable tag="a" :to="{ name: 'blue-quasar-components' }")
+          q-item-section(avatar)
+            q-icon(name="fas fa-file")
+          q-item-section
+            q-item-label Using Blue Quasar Components
 
         q-item(clickable tag="a" target="_blank" href="https://github.com/jbizzay/blue-api")
           q-item-section(avatar)
@@ -177,5 +183,8 @@ export default {
         margin-bottom 12px
     .q-page-container
       .q-page
-        padding 12px
+        padding 12px 12px 120px 12px
+        max-width 900px
+        margin-left auto
+        margin-right auto
 </style>

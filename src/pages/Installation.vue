@@ -2,7 +2,7 @@
   .installation
     q-page
       h1 Installation
-      p This is assuming you are installing each project in separate directories. For instance, myapp/ with myapp/client and myapp/api. You should have already have PHP 7.x and composer installed.
+      p This is assuming you are installing each project in separate directories. For instance, myapp/ with myapp/client and myapp/api. You should already have PHP 7.x, composer, npm and yarn installed.
       h2 API
       prism(language="bash").
         git clone git@github.com:jbizzay/blue-api.git api
