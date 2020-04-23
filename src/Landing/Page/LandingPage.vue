@@ -8,6 +8,8 @@
       .intro-message-about
         .bg
         .text The frontend and the backend are separate projects, which allows for using them separately. Together, they provide a fully working landing page, auth flow and admin.
+
+        .text This is the landing page, use it to sell your app and show some demo screenshots of it's features.
 </template>
 <script>
 export default {
@@ -22,10 +24,14 @@ export default {
   font-family: 'Jomolhari', serif
   font-size: 48px
   line-height: 48px
+  color: #fff
+  text-align: center
 
 .intro-message-sub
   font-size: 22px
   margin: 12px 0
+  color: #fff
+  text-align: center
 
 .intro-message-about
   font-size: 18px

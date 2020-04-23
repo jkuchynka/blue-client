@@ -11,11 +11,14 @@
 
           q-btn(flat to="/features") Features
 
+          q-btn(flat to="/docs") Docs
+
           q-space
 
-          q-btn(flat to="/login") Login
+          div(style="position: absolute; right: 0")
+            q-btn(flat to="/login") Login
 
-          q-btn(flat to="/register") Register
+            q-btn(flat to="/register") Register
 
       .hero-background-wrapper
         .hero-background
@@ -68,11 +71,9 @@ export default {
   opacity: 0.5
 
 .content-wrapper
+  margin-top: 200px
   width: 880px
   z-index: 9
-  padding-top: 200px
-  text-align: center
   position: relative
-  color: #fff
 
 </style>
