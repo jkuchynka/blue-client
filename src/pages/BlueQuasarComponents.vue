@@ -12,6 +12,8 @@
       )
     p See the docs below for more info on using the blue-confirm component. The examples below show blue- components, but inside the starter app, you would generally want to use app- instead.
 
+    hr
+
     h2 BlueConfirm
     p Used to confirm actions, such as deleting a user.
     q-table(
@@ -21,6 +23,23 @@
       :hide-bottom="true"
     )
 
+    h3 Demo
+
+    div
+      q-btn(color="primary" @click="showConfirm = true") Show Confirm
+      .inline.q-ml-md(v-if="confirmClicked") You Clicked: {{ confirmClicked }}
+
+    blue-confirm(
+      :show.sync="showConfirm"
+      title="Confirm"
+      message="This action cannot be undone"
+      label-cancel="Go Back"
+      label-submit="Do It"
+      :on-submit="onConfirmSubmit"
+      :on-cancel="onConfirmCancel"
+    )
+
+    hr
     h2 BlueDataTable
     p Used to create a data table, for example creating an adminstration table for users, with pagination, search, sorting, filtering, batch actions, exporting and importing.
     q-table(
@@ -29,6 +48,13 @@
       :data="dataDataTable"
       :hide-bottom="true"
     )
+
+    h3 Demo
+
+    .q-my-md
+      demo-blue-data-table
+
+    hr
 
     h2 BlueForm
     p Used for creating dynamic forms. Includes validation and submit callbacks
@@ -47,8 +73,20 @@
       :wrap-cells="true"
     )
 
+    .q-my-md
+      demo-blue-form
+
+    h2 BlueImport
+
+    .q-my-md
+      demo-blue-import
+
 </template>
 <script>
+
+import DemoBlueDataTable from 'quasar-app-extension-blue/src/demo/DemoBlueDataTable'
+import DemoBlueForm from 'quasar-app-extension-blue/src/demo/DemoBlueForm'
+import DemoBlueImport from 'quasar-app-extension-blue/src/demo/DemoImport'
 
 let columnsProps = [
   {
@@ -243,18 +281,136 @@ const dataFormFields = [
   }
 ]
 
+const columnsDemoDataTable = [
+  {
+    name: 'id',
+    align: 'right'
+  },
+  {
+    name: 'name'
+  },
+  {
+    name: 'location'
+  },
+  {
+    name: 'role'
+  },
+  {
+    name: 'custom'
+  }
+]
+
+const paginationDemoDataTable = {
+  rowsPerPage: 3
+}
+
+const settingsDemoDataTable = {
+  search: {
+    placeholder: 'Enter search terms',
+    debounce: 500,
+    icon: 'fas fa-search'
+  }
+}
+
 export default {
   name: 'PageBlueQuasarComponents',
+  components: {
+    DemoBlueDataTable,
+    DemoBlueForm,
+    DemoBlueImport
+  },
   data: () => ({
     columnsProps,
     dataConfirm,
     dataDataTable,
     dataForm,
     columnsFormFields,
-    dataFormFields
+    dataFormFields,
+    showConfirm: false,
+    confirmClicked: null,
+    columnsDemoDataTable,
+    paginationDemoDataTable,
+    settingsDemoDataTable
   }),
   methods: {
-
+    onConfirmCancel () {
+      this.confirmClicked = 'cancel'
+      this.showConfirm = false
+    },
+    onConfirmSubmit () {
+      this.confirmClicked = 'confirm'
+      this.showConfirm = false
+    },
+    onActionDemoDataTable (action, row) {
+      console.log('child table on action', action, row)
+    },
+    onRequestDemoDataTable (params, resolve, reject) {
+      console.log('data table params', params)
+      const data = [
+        {
+          id: 1,
+          name: 'Donald Duck',
+          location: 'Disney World',
+          role: 'user'
+        },
+        {
+          id: 2,
+          name: 'Homer Simpson',
+          location: 'Springdale',
+          role: 'admin'
+        },
+        {
+          id: 3,
+          name: 'Batman',
+          location: 'Gotham City',
+          role: 'user'
+        },
+        {
+          id: 4,
+          name: 'Chip and Dale',
+          location: 'A tree',
+          role: 'editor'
+        },
+        {
+          id: 5,
+          name: 'Dora',
+          location: 'Explorin\'',
+          role: 'admin'
+        }
+      ]
+      let filtered = data
+      if (params.filter) {
+        const test = params.filter.toLowerCase()
+        filtered = filtered.filter(row => {
+          return row.name.toLowerCase().includes(test) || row.location.toLowerCase().includes(test)
+        })
+      }
+      const num = params.descending ? 1 : -1
+      filtered.sort((a, b) => {
+        if (a[params.sortBy] < b[params.sortBy]) {
+          return num
+        }
+        if (a[params.sortBy] > b[params.sortBy]) {
+          return -num
+        }
+        return 0
+      })
+      const rows = filtered.slice((params.page - 1) * params.rowsPerPage, params.page * params.rowsPerPage)
+      console.log('returning rows', rows)
+      resolve({
+        data: rows,
+        count: filtered.length
+      })
+      /**
+      // or with an api request
+      this.$api.get('users').then(response => {
+        resolve({
+          data: response.data,
+          count: response.headers.count
+        })
+      })
+      */
+    }
   }
 }
 </script>

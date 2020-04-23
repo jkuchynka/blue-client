@@ -31,7 +31,6 @@ const settings = {
 }
 
 export default {
-  name: 'AuthFormPassword',
   props: ['url', 'on-submit-done'],
   data: () => ({
     errors: [],

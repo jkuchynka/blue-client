@@ -1,10 +1,10 @@
 <template lang="pug">
-  .login-page
+  .auth-login-page
     login-form
 </template>
 <script>
 
-import LoginForm from '../Form/Login'
+import LoginForm from '../Form/LoginForm'
 
 export default {
   components: {

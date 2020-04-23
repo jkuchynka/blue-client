@@ -1,5 +1,7 @@
 // Configuration for your app
 // https://quasar.dev/quasar-cli/quasar-conf-js
+//
+const path = require('path')
 
 module.exports = function (ctx) {
   return {
@@ -16,7 +18,8 @@ module.exports = function (ctx) {
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css
     css: [
       '~prismjs/themes/prism-dark.css',
-      'app.styl'
+      'app.styl',
+      '../Landing/landing.sass'
     ],
 
     // https://github.com/quasarframework/quasar/tree/dev/extras
@@ -51,7 +54,9 @@ module.exports = function (ctx) {
       directives: [],
 
       // Quasar plugins
-      plugins: []
+      plugins: [
+        'LocalStorage'
+      ]
     },
 
     // https://quasar.dev/quasar-cli/cli-documentation/supporting-ie
@@ -78,7 +83,12 @@ module.exports = function (ctx) {
           options: {
             formatter: require('eslint').CLIEngine.getFormatter('stylish')
           }
-        })
+        }),
+
+        cfg.resolve.alias = {
+          ...cfg.resolve.alias,
+          '@': path.resolve(__dirname, './src')
+        }
       },
 
       chainWebpack (chain) {
@@ -93,7 +103,13 @@ module.exports = function (ctx) {
     devServer: {
       https: false,
       port: 8080,
-      open: true // opens browser window automatically
+      open: true, // opens browser window automatically,
+      watchOptions: {
+        ignored: [
+          'node_modules',
+          '!node_modules/quasar-app-extension-blue'
+        ]
+      }
     },
 
     // animations: 'all', // --- includes all animations

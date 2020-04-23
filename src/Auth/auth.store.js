@@ -29,7 +29,8 @@ export default {
   },
   actions: {
     login,
-    logout
+    logout,
+    resetPassword
   }
 }
 
@@ -53,4 +54,8 @@ function logout ({ commit }) {
     Notify.create('Logged out')
   }
   return api.get('auth/logout').then(callback).catch(callback)
+}
+
+function resetPassword ({ commit }, { email }) {
+  // return api.post('auth/')
 }

@@ -37,6 +37,12 @@
           q-item-section
             q-item-label Using Blue Quasar Components
 
+        q-item(clickable tag="a" :to="{ name: 'blue-data-table' }")
+          q-item-section(avatar)
+            q-icon(name="fas fa-file")
+          q-item-section
+            q-item-label Blue Data Table
+
         q-item(clickable tag="a" target="_blank" href="https://github.com/jbizzay/blue-api")
           q-item-section(avatar)
             q-icon(name="fab fa-github")

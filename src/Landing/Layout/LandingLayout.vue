@@ -15,10 +15,20 @@
 
           q-space
 
-          div(style="position: absolute; right: 0")
+          .user-btns(v-if="!user || !user.id")
             q-btn(flat to="/login") Login
 
             q-btn(flat to="/register") Register
+
+          .user-btns(v-else)
+            q-btn-dropdown(flat :label="user.name")
+              q-list
+                q-item(clickable v-close-popup to="/admin")
+                  q-item-section
+                    q-item-label Admin
+                q-item(clickable v-close-popup @click="onLogout")
+                  q-item-section
+                    q-item-label Logout
 
       .hero-background-wrapper
         .hero-background
@@ -30,7 +40,17 @@
 export default {
   data: () => ({
 
-  })
+  }),
+  computed: {
+    user () {
+      return this.$store.state.auth.user
+    }
+  },
+  methods: {
+    onLogout () {
+      this.$store.dispatch('auth/logout')
+    }
+  }
 }
 </script>
 <style lang="sass" scoped>
@@ -48,6 +68,10 @@ export default {
   .q-toolbar__title a
     color: #fff
     text-decoration: none
+
+.user-btns
+  position: absolute
+  right: 10px
 
 .hero-background-wrapper
   min-height: 100vh

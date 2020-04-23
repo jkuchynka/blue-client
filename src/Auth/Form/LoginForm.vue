@@ -4,10 +4,17 @@
       v-model="formData"
       title="Login"
       :fields="fields"
+      :actions="actions"
       :settings="settings"
       :errors="errors"
       :on-submit="onSubmit"
     )
+
+    .footer
+      router-link(:to="{ name: 'auth-reset-password' }") Forget password?
+
+    .register-link No account yet? #[router-link(:to="{ name: 'auth-register' }") Sign up here!]
+
 </template>
 <script>
 
@@ -24,18 +31,26 @@ const fields = [
   }
 ]
 
-const settings = {}
+const actions = {
+  cancel: {
+    enabled: false
+  },
+  submit: {
+    label: 'Login',
+    class: 'full-width'
+  }
+}
 
 export default {
-  name: 'AuthFormLogin',
   data: () => ({
     formData: {
       email: '',
       password: ''
     },
+    actions,
     errors: [],
     fields,
-    settings
+    settings: {}
   }),
   methods: {
     onSubmit () {
@@ -51,7 +66,27 @@ export default {
 }
 </script>
 <style lang="sass" scoped>
-  .auth-login-form
-    margin 20px auto
-    max-width 450px
+
+.auth-login-form
+  margin: 20px auto
+
+  .form-title
+    text-align: center
+    text-transform: uppercase
+
+.footer
+  padding: 6px 0 24px 18px
+  max-width: 450px
+  margin: 0 auto
+  background: $grey-2
+  a
+    color: $grey-8
+
+.register-link
+  margin: 12px 0
+  text-align: center
+
+.register-link, .register-link a
+  color: #fff
+
 </style>
