@@ -1,14 +1,14 @@
 <template lang="pug">
   .auth-reset-password-page
-    reset-password-form
+    request-reset-form
 </template>
 <script>
 
-import ResetPasswordForm from '../Form/ResetPasswordForm'
+import RequestResetForm from '../Form/RequestResetForm'
 
 export default {
   components: {
-    ResetPasswordForm
+    RequestResetForm
   },
   data: () => ({
 

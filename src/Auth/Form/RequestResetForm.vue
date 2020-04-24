@@ -1,20 +1,19 @@
 <template lang="pug">
-  .auth-login-form
-
-    div(v-if="!submitted")
+  .auth-request-reset-form
+    div.success(v-if="submitted")
+      | Thanks! Please check your email for a link where you can set your new password.
+    div.error(v-else-if="error")
+      | Oops, something went wrong. We were unable to find your email address.
+    div(v-else)
       blue-form(
         v-model="formData"
-        title="Sign Up"
+        title="Reset Password"
         :fields="fields"
         :actions="actions"
         :settings="settings"
         :errors="errors"
         :on-submit="onSubmit"
       )
-
-    div(v-else)
-      .thanks Thanks for signing up! We've sent you an email with a link you can use to verify your account, and set your name and password.
-
 </template>
 <script>
 
@@ -31,7 +30,7 @@ const actions = {
     enabled: false
   },
   submit: {
-    label: 'Sign Up',
+    label: 'Reset Password',
     class: 'full-width'
   }
 }
@@ -40,25 +39,28 @@ export default {
   data: () => ({
     formData: {},
     actions,
-    errors: [],
     fields,
     settings: {},
-    submitted: false
+    submitted: false,
+    error: false,
+    errors: []
   }),
   methods: {
     onSubmit () {
       const { email } = this.formData
-      this.$store.dispatch('auth/register', {
-        email
-      }).then(response => {
+      this.$store.dispatch('auth/requestReset', { email }).then(response => {
         this.submitted = true
       }).catch(() => {
-        this.errors = ['Sumthing wrong']
+        this.error = true
       })
     }
   }
 }
 </script>
-<style lang="sass" scoped>
-
+<style lang="sass" style="scoped">
+.success, .error
+  background: #fff
+  padding: 25px
+.error
+  color: red
 </style>

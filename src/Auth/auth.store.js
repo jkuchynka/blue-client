@@ -30,7 +30,8 @@ export default {
   actions: {
     login,
     logout,
-    resetPassword
+    register,
+    requestReset
   }
 }
 
@@ -56,6 +57,18 @@ function logout ({ commit }) {
   return api.get('auth/logout').then(callback).catch(callback)
 }
 
-function resetPassword ({ commit }, { email }) {
-  // return api.post('auth/')
+function register ({ commit }, { email }) {
+  return api.post('auth/register', {
+    email
+  }).then(response => {
+    return response.data
+  })
+}
+
+function requestReset ({ commit }, { email }) {
+  return api.post('auth/request-reset', {
+    email
+  }).then(response => {
+    return response.data
+  })
 }

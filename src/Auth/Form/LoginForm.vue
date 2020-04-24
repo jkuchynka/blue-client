@@ -11,7 +11,7 @@
     )
 
     .footer
-      router-link(:to="{ name: 'auth-reset-password' }") Forget password?
+      router-link(:to="{ name: 'auth-request-reset' }") Forget password?
 
     .register-link No account yet? #[router-link(:to="{ name: 'auth-register' }") Sign up here!]
 
