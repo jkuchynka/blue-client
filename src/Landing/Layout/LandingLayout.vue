@@ -7,18 +7,18 @@
           q-toolbar-title
             router-link(to="/") Blue
 
-          q-btn(flat to="/pricing") Pricing
+          q-btn(:to="{ name: 'pricing' }" flat :class="{ active: $route.name === 'pricing' }") Pricing
 
-          q-btn(flat to="/features") Features
+          q-btn(:to="{ name: 'features' }" flat :class="{ active: $route.name === 'features' }") Features
 
-          q-btn(flat to="/docs") Docs
+          q-btn(:to="{ name: 'docs' }" flat :class="{ active: $route.name === 'docs' }") Docs
 
           q-space
 
           .user-btns(v-if="!user || !user.id")
-            q-btn(flat to="/login") Login
+            q-btn(:to="{ name: 'auth-login' }" flat :class="{ active: $route.name === 'auth-login' }") Login
 
-            q-btn(flat to="/register") Register
+            q-btn(:to="{ name: 'auth-register' }" flat :class="{ active: $route.name === 'auth-register' }") Register
 
           .user-btns(v-else)
             q-btn-dropdown(flat :label="user.name")
@@ -57,6 +57,9 @@ export default {
 
 .landing-layout
   background: blue
+
+.active
+  border-bottom: 2px solid $grey-1
 
 .q-header
   position: absolute
