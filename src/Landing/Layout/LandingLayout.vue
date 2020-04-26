@@ -112,7 +112,7 @@ export default {
 <style lang="sass" scoped>
 
 .landing-layout
-  background-color: $grey-9
+  background-color: $grey-10
 
 .active
   border-bottom: 2px solid $grey-1

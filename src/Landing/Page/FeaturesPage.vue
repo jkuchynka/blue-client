@@ -3,10 +3,11 @@
 .features-page
   .intro
     .intro-message Features
-    .intro-message-sub This is a detailed rundown of what Blue has to offer. Everything here is completely customizable and you are not locked in to any implementation. Blue is in it's early stages, so not everything here is implemented yet. Code, structure and modules will rapidly change until we hit a solid release. That being said, it should still be a solid starting app and/or resource for new projects at any time.
 
   q-card.features
     q-card-section
+
+      div This is a detailed rundown of what Blue has to offer. Everything here is completely customizable and you are not locked into any implementation. Blue is in it's early stages, so not everything here is implemented yet. Code, structure and modules will rapidly change until we hit a solid release. That being said, it should still be a solid starting app and/or resource for new projects at any time.
 
       .feature
         .title Landing Page
