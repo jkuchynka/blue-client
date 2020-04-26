@@ -33,7 +33,8 @@
       .hero-background-wrapper
         .hero-background
 
-        .content-wrapper
+      q-page.content-wrapper
+        q-page-content
           router-view
 
       .footer
@@ -86,6 +87,7 @@
               router-link(:to="{ name: 'contact' }") Terms of service
               router-link(:to="{ name: 'contact' }") Privacy Policy
               router-link(:to="{ name: 'contact' }") Sitemap
+              router-link(:to="{ name: 'hero-test' }") Hero test
 </template>
 <script>
 export default {
@@ -110,7 +112,7 @@ export default {
 <style lang="sass" scoped>
 
 .landing-layout
-  background: blue
+  background-color: $grey-9
 
 .active
   border-bottom: 2px solid $grey-1
@@ -132,10 +134,13 @@ export default {
 
 .hero-background-wrapper
   height: 100vh
+  width: 100%
   display: flex
   align-items: center
+  position: absolute
+  background: blue
   flex-direction: column
-  background-image linear-gradient(-280deg, $cyan-2, $deep-purple-6)
+  background-image: linear-gradient(-280deg, blue, $grey-7)
 
 .hero-background
   background-repeat: no-repeat
@@ -145,19 +150,25 @@ export default {
   height: 100vh
   width: 100%
   background-image: url(~@/Landing/assets/hero-bg.jpg)
+  background-color: #fff
   mix-blend-mode: overlay
-  opacity: 0.5
+  opacity: 0.7
 
 .content-wrapper
-  margin-top: 200px
+  margin: 0 auto
   width: 880px
   z-index: 9
   position: relative
+  padding: 100px 0
+  top: 60px
+  min-height: 100vh !important
 
 .footer
   padding: 45px
   background-color: $grey-10
   color: #fff
+  position: relative
+  z-index: 9
 
 .footer-menu
   .title

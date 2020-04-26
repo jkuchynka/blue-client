@@ -1,5 +1,6 @@
 <template lang="pug">
   .landing-pricing-page
+    .intro Blue is open source and licensed with MIT. It's free to use in any manner you choose. The pricing shown below is just a starting point for your next awesome app!
     q-table(
       title="Sample Pricing Table"
       :data="data"
@@ -128,5 +129,10 @@ export default {
 }
 </script>
 <style lang="sass" scoped>
+
+.intro
+  padding: 24px
+  background: $grey-1
+  margin: 0 0 12px
 
 </style>

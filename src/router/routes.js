@@ -12,6 +12,8 @@ const routes = [
       { path: 'verify/reset/:user_id', component: () => import('@/Auth/Page/VerifyResetPage.vue') },
 
       { path: 'contact', name: 'contact', component: () => import('@/Contact/ContactPage.vue') },
+      { path: 'features', name: 'features', component: () => import('@/Landing/Page/FeaturesPage.vue') },
+      { path: 'hero-test', name: 'hero-test', component: () => import('@/Landing/Page/HeroTestPage.vue') },
       { path: 'pricing', name: 'pricing', component: () => import('@/Landing/Page/PricingPage.vue') }
     ]
   },
