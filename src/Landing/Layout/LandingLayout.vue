@@ -35,6 +35,57 @@
 
         .content-wrapper
           router-view
+
+      .footer
+        .row
+          .col-3.text-center Logo here
+          .col-3
+            q-list.footer-menu(dense)
+              q-item
+                q-item-section.title Blue
+              q-item
+                q-item-section
+                  q-btn(:to="{ name: 'contact' }" flat align="left") Contact Us
+              q-item
+                q-item-section
+                  q-btn(:to="{ name: 'contact' }" flat align="left") About Blue
+              q-item
+                q-item-section
+                  q-btn(:to="{ name: 'contact' }" flat align="left") Careers
+          .col-3
+            q-list.footer-menu(dense)
+              q-item
+                q-item-section.title Follow Us
+              q-item
+                q-item-section
+                  q-btn(:to="{ name: 'contact' }" flat align="left") Twitter
+              q-item
+                q-item-section
+                  q-btn(:to="{ name: 'contact' }" flat align="left") Facebook
+              q-item
+                q-item-section
+                  q-btn(:to="{ name: 'contact' }" flat align="left") Instagram
+          .col-3
+            q-list.footer-menu(dense)
+              q-item
+                q-item-section.title Support
+              q-item
+                q-item-section
+                  q-btn(:to="{ name: 'contact' }" flat align="left") Forum
+              q-item
+                q-item-section
+                  q-btn(:to="{ name: 'contact' }" flat align="left") Wiki
+              q-item
+                q-item-section
+                  q-btn(:to="{ name: 'contact' }" flat align="left") Docs
+        .row.footer-bottom
+          .col-3
+          .col-9
+            span.copyright @ {{ year }} Blue. All rights reserved.
+            span.links
+              router-link(:to="{ name: 'contact' }") Terms of service
+              router-link(:to="{ name: 'contact' }") Privacy Policy
+              router-link(:to="{ name: 'contact' }") Sitemap
 </template>
 <script>
 export default {
@@ -44,6 +95,9 @@ export default {
   computed: {
     user () {
       return this.$store.state.auth.user
+    },
+    year () {
+      return new Date().getFullYear()
     }
   },
   methods: {
@@ -77,21 +131,18 @@ export default {
   right: 10px
 
 .hero-background-wrapper
-  min-height: 100vh
+  height: 100vh
   display: flex
   align-items: center
   flex-direction: column
-  // background-image linear-gradient(-280deg, #3f51b5, #a832d7)
-  // background-image linear-gradient(-280deg, $cyan-6 , $deep-purple-4)
   background-image linear-gradient(-280deg, $cyan-2, $deep-purple-6)
-  // background-image: linear-gradient(-280deg, $cyan-2, $blue-10)
 
 .hero-background
   background-repeat: no-repeat
   background-position: 0% 28%
   background-size: cover
   position: absolute
-  height: 100%
+  height: 100vh
   width: 100%
   background-image: url(~@/Landing/assets/hero-bg.jpg)
   mix-blend-mode: overlay
@@ -102,5 +153,25 @@ export default {
   width: 880px
   z-index: 9
   position: relative
+
+.footer
+  padding: 45px
+  background-color: $grey-10
+  color: #fff
+
+.footer-menu
+  .title
+    font-size: 2rem
+    font-weight: 400
+    letter-spacing: 0.00735em
+    padding-left: 12px
+
+.footer-bottom
+  margin: 60px 0 24px 0
+  .copyright
+    margin: 0 48px 0 20px
+  .links a
+    color: #fff
+    margin: 0 12px
 
 </style>

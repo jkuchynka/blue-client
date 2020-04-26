@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 import auth from '@/Auth/auth.store'
-console.log('auth store', auth)
+import contact from '@/Contact/contact.store'
 
 Vue.use(Vuex)
 
@@ -18,7 +18,8 @@ Vue.use(Vuex)
 export default function (/* { ssrContext } */) {
   const Store = new Vuex.Store({
     modules: {
-      auth
+      auth,
+      contact
     },
 
     // enable strict mode (adds overhead!)
