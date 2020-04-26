@@ -1,6 +1,6 @@
 # Blue (blue-client)
 
-A Quasar Framework app
+This a WIP frontend for a starter app. Based off of Quasar
 
 ## Install the dependencies
 ```bash

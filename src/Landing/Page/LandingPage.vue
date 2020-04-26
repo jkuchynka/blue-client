@@ -8,7 +8,7 @@
       .intro-message-about
         .bg
         p We love building web apps. We hate building the same things over and over, or taking too much time to get a new idea up and running. So, we bundled up our favorite tools in an easy to use package, and put together common features that come with most web apps. Of course, every starter app is opiononated, but we think the frameworks and packages used in Blue are 1) Quick to learn 2) Fun to use 3) Enable fast development. We've also added some tools of our own.
-        p The frontend and the backend are separate projects, so you can use either one if you want a Node API instead of Laravel, or a React frontend instead of Vue. But for fans of Laravel and Vue it is a perfect fit.
+        p The frontend and the backend are separate projects, so you can use either one if you want a Node API instead of Laravel, or a React frontend instead of Vue. But for fans of Laravel and Vue it could be a perfect fit for your next killer project.
         p Here's a quick rundown of the features that work out of the box. Check out the #[router-link(:to="{ name: 'features' }") Features] page for more details.
         ul
           li Landing Page
