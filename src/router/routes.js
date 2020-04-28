@@ -1,34 +1,23 @@
 
-const routes = [
-  {
-    path: '/',
-    component: () => import('../Landing/Layout/LandingLayout.vue'),
-    children: [
-      { path: '', name: 'Landing', component: () => import('../Landing/Page/LandingPage.vue') },
-      { path: 'login', name: 'auth-login', component: () => import('@/Auth/Page/LoginPage.vue') },
-      { path: 'register', name: 'auth-register', component: () => import('@/Auth/Page/RegisterPage.vue') },
-      { path: 'request-reset', name: 'auth-request-reset', component: () => import('@/Auth/Page/RequestResetPage.vue') },
-      { path: 'verify/account/:user_id', component: () => import('@/Auth/Page/VerifyAccountPage.vue') },
-      { path: 'verify/reset/:user_id', component: () => import('@/Auth/Page/VerifyResetPage.vue') },
+import deepmerge from 'deepmerge'
+import { routes as landingRoutes } from './../Landing'
+import { routes as authRoutes } from './../Auth'
+import { routes as docRoutes } from './../Docs'
 
-      { path: 'contact', name: 'contact', component: () => import('@/Contact/ContactPage.vue') },
-      { path: 'features', name: 'features', component: () => import('@/Landing/Page/FeaturesPage.vue') },
-      { path: 'hero-test', name: 'hero-test', component: () => import('@/Landing/Page/HeroTestPage.vue') },
-      { path: 'pricing', name: 'pricing', component: () => import('@/Landing/Page/PricingPage.vue') }
-    ]
-  },
-  {
-    path: '/docs',
-    component: () => import('layouts/WelcomeLayout.vue'),
-    name: 'docs',
-    children: [
-      { path: '', component: () => import('pages/Welcome.vue') },
-      { path: 'installation', name: 'installation', component: () => import('pages/Installation.vue') },
-      { path: 'blue-quasar-components', name: 'blue-quasar-components', component: () => import('pages/BlueQuasarComponents.vue') },
-      { path: 'blue-data-table', name: 'blue-data-table', component: () => import('pages/BlueDataTable.vue') }
-    ]
-  }
-]
+// Merge routes from all modules
+// Multiple modules can use the same parent routes
+let routesDict = {}
+const moduleRoutes = [landingRoutes, authRoutes, docRoutes]
+moduleRoutes.forEach(modRoutes => {
+  modRoutes.forEach(route => {
+    if (!routesDict[route.path]) {
+      routesDict[route.path] = {}
+    }
+    routesDict[route.path] = deepmerge(routesDict[route.path], route)
+  })
+})
+
+let routes = Object.values(routesDict)
 
 // Always leave this as last one
 if (process.env.MODE !== 'ssr') {
