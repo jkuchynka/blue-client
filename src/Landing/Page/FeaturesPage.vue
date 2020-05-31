@@ -31,7 +31,7 @@
         .title User Dashboard
         .about A custom layout for end users. This is where your users will use your app after they signup and login. Contains some things you will probably need to start out, such as profiles and messaging. You can immediately start developing your app here and getting it to market.
 
-      q-separtor
+      q-separator
 
       .feature
         .title Supercharged Development
