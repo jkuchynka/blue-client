@@ -44,8 +44,8 @@ const actions = {
 export default {
   data: () => ({
     formData: {
-      email: '',
-      password: ''
+      email: 'admin@example.org',
+      password: 'password'
     },
     actions,
     errors: [],

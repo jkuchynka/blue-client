@@ -1,6 +1,6 @@
 
 const routes = [
-  // This parent route should already be defined by the Layout module
+  // This parent route should already be defined by the layouts module
   {
     path: '/',
     children: [

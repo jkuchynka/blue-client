@@ -1,13 +1,14 @@
 
 import deepmerge from 'deepmerge'
 import { routes as landingRoutes } from './../Landing'
+import { routes as adminRoutes } from './../Admin'
 import { routes as authRoutes } from './../Auth'
 import { routes as docRoutes } from './../Docs'
 
 // Merge routes from all modules
 // Multiple modules can use the same parent routes
 let routesDict = {}
-const moduleRoutes = [landingRoutes, authRoutes, docRoutes]
+const moduleRoutes = [landingRoutes, adminRoutes, authRoutes, docRoutes]
 moduleRoutes.forEach(modRoutes => {
   modRoutes.forEach(route => {
     if (!routesDict[route.path]) {

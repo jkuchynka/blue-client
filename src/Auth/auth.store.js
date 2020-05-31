@@ -5,9 +5,27 @@ export default {
   namespaced: true,
   state: {
     user: LocalStorage.has('user') ? LocalStorage.getItem('user') : null,
+    permissions: LocalStorage.has('permissions') ? LocalStorage.getItem('permissions') : null,
+    roles: LocalStorage.has('roles') ? LocalStorage.getItem('roles') : null,
     token: LocalStorage.has('token') ? LocalStorage.getItem('token') : null
   },
   mutations: {
+    SET_PERMISSIONS (state, permissions) {
+      state.permissions = permissions
+      if (permissions === null) {
+        LocalStorage.remove('permissions')
+      } else {
+        LocalStorage.set('permissions', permissions)
+      }
+    },
+    SET_ROLES (state, roles) {
+      state.roles = roles
+      if (roles === null) {
+        LocalStorage.remove('roles')
+      } else {
+        LocalStorage.set('roles', roles)
+      }
+    },
     SET_TOKEN (state, token) {
       state.token = token
       // Setting local storage item to null will result in it
@@ -28,6 +46,8 @@ export default {
     }
   },
   actions: {
+    hasPermissions,
+    hasRoles,
     login,
     logout,
     register,
@@ -35,21 +55,48 @@ export default {
   }
 }
 
+function hasPermissions ({ state }, permissions) {
+  let access = !permissions.length
+  if (permissions.length && state.permissions) {
+    access = permissions.every(perm => {
+      return state.permissions.includes(perm)
+    })
+  }
+  return access
+}
+
+function hasRoles ({ state }, roles) {
+  let access = !roles.length
+  if (roles.length && state.roles) {
+    access = roles.every(role => {
+      return state.roles.includes(role)
+    })
+  }
+  return access
+}
+
 function login ({ commit }, { email, password }) {
   return api.post('auth/login', {
     email,
     password
   }).then(response => {
-    const { user, token } = response.data
+    const user = response.data.data
+    const { permissions, roles, token } = response.data.meta
     commit('SET_USER', user)
+    commit('SET_PERMISSIONS', permissions)
+    commit('SET_ROLES', roles)
     commit('SET_TOKEN', token)
     Notify.create(`Welcome back ${user.name}`)
-    this.$router.push({ path: '/' })
+    const route = this.$router.currentRoute
+    const path = route.query && route.query.go ? route.query.go : '/'
+    this.$router.push({ path })
   })
 }
 
 function logout ({ commit }) {
   function callback () {
+    commit('SET_PERMISSIONS', null)
+    commit('SET_ROLES', null)
     commit('SET_TOKEN', null)
     commit('SET_USER', null)
     Notify.create('Logged out')
