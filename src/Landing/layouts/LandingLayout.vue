@@ -33,8 +33,8 @@
       .hero-background-wrapper
         .hero-background
 
-      q-page.content-wrapper
-        q-page-content
+      q-page-container
+        q-page.content-wrapper
           router-view
 
       .footer
