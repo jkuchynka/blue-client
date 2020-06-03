@@ -4,6 +4,7 @@
       blue-form(
         v-model="formData"
         title="Contact Us"
+        :errors="errors"
         :fields="fields"
         :settings="settings"
         :on-submit="onSubmit"
@@ -36,6 +37,7 @@ const fields = [
 
 export default {
   data: () => ({
+    errors: [],
     formData: {},
     fields,
     settings: {},
@@ -43,9 +45,13 @@ export default {
   }),
   methods: {
     onSubmit () {
-      this.$store.dispatch('contact/post', this.formData).then(
-        this.submitted = true
-      )
+      this.errors = []
+      this.$store.dispatch('contact/post', this.formData)
+        .then(response => {
+          this.submitted = true
+        }, err => {
+          this.errors = [err.response.data.message]
+        })
     }
   }
 }

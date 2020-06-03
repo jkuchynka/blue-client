@@ -8,7 +8,7 @@ export default {
 }
 
 function post ({ commit }, { name, email, subject, message }) {
-  return api.post('contact', {
+  return api.post('messages/contact-messages', {
     name,
     email,
     subject,
