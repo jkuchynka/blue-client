@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import auth from '@/Auth/auth.store'
-import contact from '@/Contact/contact.store'
+import { store as auth } from '@/Auth'
+import { store as contact } from '@/Contact'
 
 Vue.use(Vuex)
 

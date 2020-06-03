@@ -14,7 +14,7 @@
  * If valid, allow user to set their password, passing
  * this URL in the payload.
  */
-import api from '@/services/api'
+import api from '@/App'
 import PasswordForm from '../Form/PasswordForm'
 
 export default {
@@ -37,7 +37,6 @@ export default {
     },
     validateSignedUrl () {
       this.url = window.location.href
-      console.log(this.$route)
       api.post('auth/validate-verify', {
         url: this.url
       }).then(response => {

@@ -163,7 +163,7 @@
 
 <script>
 export default {
-  name: 'WelcomeLayout',
+  name: 'DocsLayout',
 
   data () {
     return {
@@ -173,24 +173,24 @@ export default {
 }
 </script>
 
-<style lang="stylus">
+<style lang="sass">
   .welcome-layout
     .app-header
       .q-toolbar__title a
-        color inherit
-        text-decoration none
+        color: inherit
+        text-decoration: none
     .left-drawer
       .q-item__label--header
-        background-color $blue-grey-10
-        color #fff
+        background-color: $blue-grey-10
+        color: #fff
       .q-item__label--caption
-        color #fff
+        color: #fff
       .q-list
-        margin-bottom 12px
+        margin-bottom: 12px
     .q-page-container
       .q-page
-        padding 12px 12px 120px 12px
-        max-width 900px
-        margin-left auto
-        margin-right auto
+        padding: 12px 12px 120px 12px
+        max-width: 900px
+        margin-left: auto
+        margin-right: auto
 </style>

@@ -9,7 +9,7 @@
 </template>
 <script>
 
-import api from '@/services/api'
+import api from '@/App'
 import PasswordForm from '../Form/PasswordForm'
 
 export default {

@@ -1,4 +1,4 @@
-import api from '@/services/api'
+import api from '@/App'
 import { LocalStorage, Notify } from 'quasar'
 
 export default {

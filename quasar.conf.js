@@ -10,15 +10,15 @@ module.exports = function (ctx) {
     // https://quasar.dev/quasar-cli/cli-documentation/boot-files
     // quasar new boot app
     boot: [
-      'i18n',
-      'axios',
-      'app'
+      '../App/boot/i18n',
+      '../App/boot/axios',
+      '../App/boot/app'
     ],
 
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css
     css: [
       '~prismjs/themes/prism-dark.css',
-      'app.sass',
+      '../App/css/app.sass',
       '../Landing/landing.sass'
     ],
 
