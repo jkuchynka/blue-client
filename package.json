@@ -12,11 +12,11 @@
     "test": "echo \"No test specified\" && exit 0"
   },
   "dependencies": {
-    "@quasar/extras": "^1.6.4",
+    "@quasar/extras": "^1.8.2",
     "axios": "^0.18.1",
     "deepmerge": "^4.2.2",
     "prismjs": "^1.20.0",
-    "quasar": "^1.9.15",
+    "quasar": "^1.12.6",
     "vue-i18n": "^8.17.3",
     "vue-prism-component": "^1.2.0"
   },
