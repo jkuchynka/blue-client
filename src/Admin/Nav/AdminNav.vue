@@ -1,12 +1,20 @@
 <template lang="pug">
   .admin-main-nav
 
-    // q-input(ref="filter" filled v-model="filter" label="Filter")
+    .filter-nav
+      q-input(
+        ref="filter"
+        standout
+        dark
+        clearable
+        v-model="filter"
+        label="Filter"
+      )
 
     q-list.nav-list(dark)
       q-item(
         clickable
-        to="/"
+        to="/admin"
       )
         .active-box
         q-item-section(avatar)
@@ -46,25 +54,6 @@
 <script>
 
 const items = [
-  {
-    key: 'lenders',
-    label: 'Lenders',
-    icon: 'fas fa-building',
-    links: [
-      {
-        key: 'lenders-manage',
-        label: 'Manage Lenders',
-        icon: 'fas fa-building',
-        to: '/admin/lenders'
-      },
-      {
-        key: 'lenders-submissions',
-        label: 'Manage Submissions',
-        icon: 'fas fa-envelope-open',
-        to: '/admin/lenders/submissions'
-      }
-    ]
-  },
   {
     key: 'users',
     label: 'Users',
@@ -108,7 +97,6 @@ export default {
   },
   computed: {
     links () {
-      console.log('COMPUTE LINKS')
       const path = this.$route.fullPath
       this.items.forEach(item => {
         if (item.links) {
@@ -133,12 +121,16 @@ export default {
   }
 }
 </script>
-<style lang="sass" scoped>
+<style lang="sass">
 
 .admin-main-nav
+  .filter-nav
+    .q-field__label
+      font-size: 12px
   .q-item__section--avatar
     min-width: auto
-    padding-right: 20px
+    padding-left: 4px
+    padding-right: 23px
     .q-icon
       font-size: 16px
   .nav-list
@@ -146,8 +138,6 @@ export default {
       color: $blue-grey-3
       min-height: auto
       padding: 0 4px
-      .q-item__section--side
-        padding-right: 8px
     .q-icon, .q-avatar
       color: $blue-grey-2
     .active-box
@@ -159,6 +149,8 @@ export default {
       top: 0
       background: $blue-5
     .q-router-link--exact-active, .router-active
-      color: $red-9
+      color: $blue-5
+      .active-box
+        display: block
 
 </style>
