@@ -1,5 +1,5 @@
 
-import routes from 'users.routes'
+import routes from './users.routes'
 
 export {
   routes
