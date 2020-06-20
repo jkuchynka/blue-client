@@ -1,7 +1,6 @@
 import axios from 'axios'
 import { LocalStorage } from 'quasar'
 
-console.log('API_URL', process.env.API_URL)
 let axiosInstance = axios.create({
   baseURL: process.env.API_URL
 })

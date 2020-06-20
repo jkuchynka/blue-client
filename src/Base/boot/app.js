@@ -26,11 +26,11 @@ export default async ({ Vue }) => {
   BlueDataTable.setDefaults({
     props: {
       column: {
-        classes: 'bg-grey'
+        // classes: 'bg-grey'
       }
     },
     show: {
-      paginationPerPage: false
+      // paginationPerPage: false
     }
   })
 }

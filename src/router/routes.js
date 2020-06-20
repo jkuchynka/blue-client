@@ -5,11 +5,19 @@ import { routes as adminRoutes } from './../Admin'
 import { routes as authRoutes } from './../Auth'
 import { routes as contactRoutes } from './../Contact'
 import { routes as docRoutes } from './../Docs'
+import { routes as usersRoutes } from './../Users'
 
 // Merge routes from all modules
 // Multiple modules can use the same parent routes
 let routesDict = {}
-const moduleRoutes = [landingRoutes, adminRoutes, authRoutes, contactRoutes, docRoutes]
+const moduleRoutes = [
+  landingRoutes,
+  adminRoutes,
+  authRoutes,
+  contactRoutes,
+  docRoutes,
+  usersRoutes
+]
 moduleRoutes.forEach(modRoutes => {
   modRoutes.forEach(route => {
     if (!routesDict[route.path]) {
@@ -25,7 +33,7 @@ let routes = Object.values(routesDict)
 if (process.env.MODE !== 'ssr') {
   routes.push({
     path: '*',
-    component: () => import('@/App/pages/Error404.vue')
+    component: () => import('@/Base/pages/Error404.vue')
   })
 }
 
