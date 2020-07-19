@@ -30,10 +30,11 @@
 import { date } from 'quasar'
 import { getRoles } from '@/Auth/services/auth.api'
 import { api } from '@/Base'
-import FilterSetsMixin from '@/Filtersets/mixins/FilterSetsMixin'
+import DataTable from '@/Base/mixins/DataTable'
+import FilterSets from '@/Filtersets/mixins/FilterSetsMixin'
 import UserInfo from '@/Users/components/UserInfo'
 import UserForm from '@/Users/components/UserForm'
-console.log(FilterSetsMixin)
+
 const columns = [
   {
     name: 'id',
@@ -112,7 +113,8 @@ export default {
     UserForm
   },
   mixins: [
-    FilterSetsMixin
+    DataTable,
+    FilterSets
   ],
   data: () => ({
     columns,
@@ -201,45 +203,8 @@ export default {
       }
     },
     onRequest (params, resolve, reject) {
-      console.log('request', params)
-      const sort = params.descending ? '-' + params.sortBy : params.sortBy
-      let requestParams = {
-        include: 'roles',
-        'page[number]': params.page,
-        'page[size]': params.rowsPerPage,
-        sort,
-        'filter[search]': params.filter
-      }
-      params.filters.forEach(filter => {
-        let operator
-        switch (filter.operator) {
-          case '=':
-            operator = ''
-            break
-          case '*':
-            operator = 'like'
-            break
-          case '>':
-            operator = 'gt'
-            break
-          case '<':
-            operator = 'lt'
-            break
-          case '!':
-            operator = '!'
-            break
-        }
-        let key
-        switch (operator) {
-          case '':
-          case '!':
-            key = `filter[${filter.field}${operator}]`
-            break
-          default:
-            key = `filter[${filter.field}:${operator}]`
-        }
-        requestParams[key] = filter.value
-      })
+      let requestParams = this.setupRequestParams(params)
+      requestParams.include = 'roles'
       api.get('users', {
         params: requestParams
       }).then(response => {
