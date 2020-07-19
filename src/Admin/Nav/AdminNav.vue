@@ -64,6 +64,12 @@ const items = [
         label: 'Manage Users',
         icon: 'fas fa-users',
         to: '/admin/users'
+      },
+      {
+        key: 'users-add',
+        label: 'Add User',
+        icon: 'fas fa-user',
+        to: '/admin/users/create'
       }
     ]
   },
