@@ -1,13 +1,12 @@
 
 const routes = [
-  // {
-  //   path: 'users',
-  //   component: () => import('pages/admin/users/UsersManage.vue'),
-  //   children: [
-  //     { path: '', component: () => import('pages/admin/users/UsersBrowse.vue') },
-  //     { path: 'create', component: () => import('pages/admin/users/UsersCreatePage.vue') }
-  //   ]
-  // },
+  {
+    path: '/user',
+    component: () => import('@/App/layouts/AppLayout.vue'),
+    children: [
+      { path: ':userName', name: 'usersProfile', component: () => import('@/Users/pages/UserProfile.vue') }
+    ]
+  },
   {
     path: '/admin',
     children: [
