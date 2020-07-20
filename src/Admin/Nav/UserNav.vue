@@ -24,26 +24,27 @@
 </template>
 <script>
 
-const links = [
-  {
-    label: 'Your Profile',
-    to: '/profile',
-    icon: 'fas fa-user'
-  },
-  {
-    label: 'Logout',
-    to: '/logout',
-    icon: 'logout'
-  }
-]
-
 export default {
   data: () => ({
-    links
+
   }),
   computed: {
     user () {
       return this.$store.state.auth.user
+    },
+    links () {
+      return [
+        {
+          label: 'Your Profile',
+          to: '/user/' + this.user.username,
+          icon: 'fas fa-user'
+        },
+        {
+          label: 'Logout',
+          to: '/auth/logout',
+          icon: 'logout'
+        }
+      ]
     }
   },
   methods: {
