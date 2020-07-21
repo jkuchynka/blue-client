@@ -10,7 +10,7 @@
         q-list
           q-item(clickable v-close-popup :to="{ name: 'usersProfile', params: { userName: user.username }}")
             q-item-section
-              q-item-label Your Profile
+              q-item-label Profile
           q-item(clickable v-close-popup to="/admin")
             q-item-section
               q-item-label Admin

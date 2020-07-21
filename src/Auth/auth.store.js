@@ -94,12 +94,14 @@ function login ({ commit }, { email, password }) {
 }
 
 function logout ({ commit }) {
+  const vm = this
   function callback () {
     commit('SET_PERMISSIONS', null)
     commit('SET_ROLES', null)
     commit('SET_TOKEN', null)
     commit('SET_USER', null)
     Notify.create('Logged out')
+    vm.$router.push('/')
   }
   return api.get('auth/logout').then(callback).catch(callback)
 }

@@ -15,20 +15,7 @@
 
           q-space
 
-          .user-btns(v-if="!user || !user.id")
-            q-btn(:to="{ name: 'auth-login' }" flat :class="{ active: $route.name === 'auth-login' }") Login
-
-            q-btn(:to="{ name: 'auth-register' }" flat :class="{ active: $route.name === 'auth-register' }") Register
-
-          .user-btns(v-else)
-            q-btn-dropdown(flat :label="user.name")
-              q-list
-                q-item(clickable v-close-popup to="/admin")
-                  q-item-section
-                    q-item-label Admin
-                q-item(clickable v-close-popup @click="onLogout")
-                  q-item-section
-                    q-item-label Logout
+          user-nav
 
       .hero-background-wrapper
         .hero-background
@@ -37,60 +24,18 @@
         q-page.content-wrapper
           router-view
 
-      .footer
-        .row
-          .col-3.text-center Logo here
-          .col-3
-            q-list.footer-menu(dense)
-              q-item
-                q-item-section.title Blue
-              q-item
-                q-item-section
-                  q-btn(:to="{ name: 'contact' }" flat align="left") Contact Us
-              q-item
-                q-item-section
-                  q-btn(:to="{ name: 'contact' }" flat align="left") About Blue
-              q-item
-                q-item-section
-                  q-btn(:to="{ name: 'contact' }" flat align="left") Careers
-          .col-3
-            q-list.footer-menu(dense)
-              q-item
-                q-item-section.title Follow Us
-              q-item
-                q-item-section
-                  q-btn(:to="{ name: 'contact' }" flat align="left") Twitter
-              q-item
-                q-item-section
-                  q-btn(:to="{ name: 'contact' }" flat align="left") Facebook
-              q-item
-                q-item-section
-                  q-btn(:to="{ name: 'contact' }" flat align="left") Instagram
-          .col-3
-            q-list.footer-menu(dense)
-              q-item
-                q-item-section.title Support
-              q-item
-                q-item-section
-                  q-btn(:to="{ name: 'contact' }" flat align="left") Forum
-              q-item
-                q-item-section
-                  q-btn(:to="{ name: 'contact' }" flat align="left") Wiki
-              q-item
-                q-item-section
-                  q-btn(:to="{ name: 'contact' }" flat align="left") Docs
-        .row.footer-bottom
-          .col-3
-          .col-9
-            span.copyright @ {{ year }} Blue. All rights reserved.
-            span.links
-              router-link(:to="{ name: 'contact' }") Terms of service
-              router-link(:to="{ name: 'contact' }") Privacy Policy
-              router-link(:to="{ name: 'contact' }") Sitemap
-              router-link(:to="{ name: 'hero-test' }") Hero test
+      app-footer
+
 </template>
 <script>
+import AppFooter from '@/App/components/AppFooter'
+import UserNav from '@/Users/components/UserNav'
+
 export default {
+  components: {
+    AppFooter,
+    UserNav
+  },
   data: () => ({
 
   }),

@@ -115,6 +115,7 @@ export default {
 
 .footer-bottom
   margin: 60px 0 24px 0
+  text-align: center
   .copyright
     margin: 0 48px 0 20px
   .links a
