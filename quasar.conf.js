@@ -26,7 +26,8 @@ module.exports = function (/* ctx */) {
       '../Base/boot/i18n',
       '../Base/boot/axios',
       '../Base/boot/app',
-      '../Admin/admin.boot'
+      '../Admin/admin.boot',
+      '../App/app.boot'
     ],
 
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css

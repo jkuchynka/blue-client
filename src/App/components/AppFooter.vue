@@ -66,7 +66,6 @@
           router-link(:to="{ name: 'contact' }") Terms of service
           router-link(:to="{ name: 'contact' }") Privacy Policy
           router-link(:to="{ name: 'contact' }") Sitemap
-          router-link(:to="{ name: 'hero-test' }") Hero test
 </template>
 <script>
 export default {
