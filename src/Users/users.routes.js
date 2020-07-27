@@ -4,7 +4,8 @@ const routes = [
     path: '/user',
     component: () => import('@/App/layouts/AppLayout.vue'),
     children: [
-      { path: ':userName', name: 'usersProfile', component: () => import('@/Users/pages/UserProfile.vue') }
+      { path: ':userName', name: 'usersProfile', component: () => import('@/Users/pages/UserProfile.vue') },
+      { path: ':userName/edit', name: 'usersProfileEdit', component: () => import('@/Users/pages/UserProfileEdit.vue') }
     ]
   },
   {
