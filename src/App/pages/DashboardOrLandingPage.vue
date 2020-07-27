@@ -5,7 +5,7 @@
 </template>
 <script>
 import DashboardPage from './DashboardPage'
-import LandingPage from '@/Landing/Page/LandingPage'
+import LandingPage from '@/Landing/pages/LandingPage'
 
 export default {
   components: {

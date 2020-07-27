@@ -1,5 +1,5 @@
 <template lang="pug">
-.dashboard-page
+q-page.dashboard-page
   h1 Welcome to the user dashboard
   p This is the starting point of the app
 </template>

@@ -1,9 +1,9 @@
 <template lang="pug">
   .app-layout
-    q-layout(view="hHh lpR fFf")
+    q-layout(view="hHh Lpr lff")
       q-header.bg-primary.text-white(bordered height-hint="98" )
         q-toolbar
-          q-btn(dense flat round icon="menu" @click="left = !left")
+          q-btn(dense flat round icon="menu" @click="left = !left" v-if="hasDrawerLeft")
 
           q-toolbar-title
             router-link(to="/") Blue
@@ -17,9 +17,11 @@
           q-route-tab(to="/page2" label="Page Two")
           q-route-tab(to="/page3" label="Page Three")
 
-      q-drawer(show-if-above v-model="left" side="left" bordered)
+      q-drawer(show-if-above v-model="left" side="left" :breakpoint="500" bordered v-if="hasDrawerLeft")
+        router-view(name="drawerLeft")
 
-      q-drawer(show-if-above v-model="right" side="right" bordered)
+      q-drawer(show-if-above v-model="right" side="right" :width="180" bordered v-if="hasDrawerRight")
+        router-view(name="drawerRight")
 
       q-page-container
         router-view
@@ -32,6 +34,16 @@ import AppFooter from '@/App/components/AppFooter'
 import UserNav from '@/Users/components/UserNav'
 
 export default {
+  props: {
+    hasDrawerLeft: {
+      type: Boolean,
+      default: false
+    },
+    hasDrawerRight: {
+      type: Boolean,
+      default: false
+    }
+  },
   components: {
     AppFooter,
     UserNav

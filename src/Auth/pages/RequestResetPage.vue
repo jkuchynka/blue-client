@@ -4,7 +4,7 @@
 </template>
 <script>
 
-import RequestResetForm from '../Form/RequestResetForm'
+import RequestResetForm from '../components/RequestResetForm'
 
 export default {
   components: {

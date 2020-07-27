@@ -17,8 +17,8 @@
 </template>
 <script>
 
-import AdminNav from './../Nav/AdminNav'
-import UserNav from './../Nav/UserNav'
+import AdminNav from './../components/AdminNav'
+import UserNav from './../components/UserNav'
 
 export default {
   components: {

@@ -1,14 +1,14 @@
 <template lang="pug">
-  .auth-register-page
-    register-form
+  .auth-login-page
+    login-form
 </template>
 <script>
 
-import RegisterForm from '../Form/RegisterForm'
+import LoginForm from '../components/LoginForm'
 
 export default {
   components: {
-    RegisterForm
+    LoginForm
   },
   data: () => ({
 

@@ -1,21 +1,16 @@
 <template lang="pug">
-  .auth-page-verify-account
+  .auth-page-verify-reset
     div(v-if="loading") Loading...
     q-banner.bg-grey-3.q-pt-lg(v-if="validUrl === false") Oops! You've used either an invalid or expired link. Click #[router-link(:to="{ name: 'auth-request-reset' }") here] to reset your password.
 
     div(v-if="validUrl")
-      q-banner.bg-indigo.text-white Please set your password to finish setting up your account.
-      auth-form-password(:url="url" :on-submit-done="onSubmitDone")
+      q-banner.bg-indigo.text-white Please reset your password.
+      password-form(:url="url" :on-submit-done="onSubmitDone")
 </template>
 <script>
-/**
- * Validate this entire url with the API.
- * If not valid, the URL is not valid, and display error message.
- * If valid, allow user to set their password, passing
- * this URL in the payload.
- */
+
 import api from '@/App'
-import PasswordForm from '../Form/PasswordForm'
+import PasswordForm from '../components/PasswordForm'
 
 export default {
   components: {
@@ -51,10 +46,16 @@ export default {
 }
 </script>
 <style lang="sass" scoped>
-  .auth-page-verify-account
-    margin 50px auto
-    max-width 450px
-    .reset-btn
-      margin 12px 0
+
+.auth-page-verify-reset
+  margin: 0 auto
+  max-width: 450px
+
+.reset-btn
+  margin: 12px 0
+
+.q-banner
+  max-width: 450px
+  margin: 0 auto
 
 </style>
