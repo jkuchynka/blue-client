@@ -5,12 +5,19 @@
     title="Edit Profile"
     :fields="fields"
     :errors="errors"
+    :actions="actions"
     :settings="settings"
     :on-action="onAction"
     :on-submit="onSubmit"
   )
 </template>
 <script>
+const actions = {
+  cancel: {
+    enabled: false
+  }
+}
+
 const settings = {}
 
 const fields = [
@@ -27,6 +34,7 @@ const fields = [
 export default {
   props: ['user'],
   data: () => ({
+    actions,
     errors: [],
     fields,
     settings

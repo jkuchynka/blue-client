@@ -83,7 +83,7 @@ export default {
     max-width: 200px
   .q-uploader
     margin: 6px 0
-    width: 220px
+    width: 120px
     .q-uploader__header
       border-bottom-left-radius: inherit
       border-bottom-right-radius: inherit

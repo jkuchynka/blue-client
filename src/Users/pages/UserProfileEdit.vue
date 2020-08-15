@@ -12,16 +12,25 @@ q-page.position-relative.user-profile-edit
     @done="done"
   )
 
+  auth-change-password-form(
+    v-if="!loading"
+    :user="user"
+    @cancel="done"
+    @done="done"
+  )
+
   app-loading(:loading="loading")
 </template>
 <script>
+import AuthChangePasswordForm from '@/Auth/components/ChangePasswordForm'
 import UserImageForm from '../components/UserImageForm'
 import UserProfileForm from '../components/UserProfileForm'
 
 export default {
   components: {
     UserImageForm,
-    UserProfileForm
+    UserProfileForm,
+    AuthChangePasswordForm
   },
   data: () => ({
     loading: true,
@@ -38,12 +47,11 @@ export default {
         this.loading = false
       })
     },
-    done (user) {
-      console.log('here')
+    done () {
       this.$router.push({
         name: 'usersProfile',
         params: {
-          userName: user.username
+          userName: this.user.username
         }
       })
     }
