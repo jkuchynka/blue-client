@@ -7,15 +7,20 @@
     :errors="errors"
     :actions="actions"
     :settings="settings"
-    :on-submit="onSubmit"
-    @upload-added="onAdded"
-    @upload-removed="onRemoved"
+    @image-added="onAdded"
+    @image-removed="onRemoved"
+    @image-start="onStartUpload"
+    @image-failed="onFailedUpload"
+    @image-uploaded="onUploaded"
+    ref="form"
   )
     template(#field-showImage)
-      q-img(src="/statics/kitty.jpg")
+      q-img(:src="userImage")
 
 </template>
 <script>
+import { LocalStorage } from 'quasar'
+
 const actions = {
   cancel: {
     enabled: false
@@ -28,6 +33,7 @@ const actions = {
 const settings = {}
 
 export default {
+  props: ['user'],
   data: () => ({
     actions,
     errors: [],
@@ -36,7 +42,9 @@ export default {
         name: 'showImage'
       },
       {
-        name: 'upload',
+        name: 'image',
+        fieldName: 'image',
+        ref: 'image',
         type: 'uploader',
         label: 'Upload',
         accept: 'jpg, png, image/*',
@@ -45,34 +53,44 @@ export default {
     ],
     image: {},
     imagePreview: null,
-    settings,
-    upload: null
+    settings
   }),
+  computed: {
+    userImage () {
+      if (this.user.image) {
+        return 'http://localhost:8844/api/files/' + this.user.image.id + '/image'
+      }
+      return '/statics/kitty.jpg'
+    }
+  },
+  mounted () {
+    const image = this.fields.find(field => field.name === 'image')
+    const token = LocalStorage.getItem('token')
+    image.factory = () => ({
+      url: `${this.$api.defaults.baseURL}/users/${this.user.id}/image`,
+      headers: [
+        { name: 'Authorization', value: `Bearer ${token}` }
+      ]
+    })
+  },
   methods: {
     onAdded () {
-      this.fields.find(field => field.name === 'upload').class = 'has-value'
+      this.fields.find(field => field.name === 'image').class = 'has-value'
     },
     onRemoved () {
-      this.fields.find(field => field.name === 'upload').class = ''
+      this.fields.find(field => field.name === 'image').class = ''
     },
-    onCancel () {
-      this.upload = null
-      this.imagePreview = null
+    onFailedUpload (info) {
+      this.errors = ['There was an error uploading the image']
     },
-    onSubmit () {
-
+    onStartUpload () {
+      this.errors = []
     },
-    onSave () {
-      this.$api.post(`users/${this.user.id}/image`, this.upload).then(response => {
-        console.log('image response', response)
-      })
-    },
-    onUploaded (input) {
-      const reader = new FileReader()
-      reader.onload = () => {
-        this.imagePreview = reader.result
-      }
-      reader.readAsDataURL(input)
+    onUploaded (info) {
+      this.user.image = JSON.parse(info.xhr.response)
+      this.$refs.form.$refs.image.reset()
+      this.onRemoved()
+      this.$q.notify('Image updated')
     }
   }
 }
@@ -83,7 +101,7 @@ export default {
     max-width: 200px
   .q-uploader
     margin: 6px 0
-    width: 120px
+    width: 220px
     .q-uploader__header
       border-bottom-left-radius: inherit
       border-bottom-right-radius: inherit

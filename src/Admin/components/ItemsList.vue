@@ -23,11 +23,11 @@ import { itemsFromModel } from '..'
  * data for an entity
  */
 export default {
-  props: ['items', 'model'],
+  props: ['items', 'model', 'excludeKeys'],
   computed: {
     __items () {
       if (!this.items && this.model) {
-        return itemsFromModel(this.model)
+        return itemsFromModel(this.model, this.excludeKeys)
       }
       return this.items
     }

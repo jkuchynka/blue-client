@@ -7,7 +7,9 @@
       :fields="fields"
       :errors="errors"
       :actions="actions"
+      :settings="settings"
       :on-submit="onSubmit"
+      ref="form"
     )
       template(v-slot:field-forgot)
         a(href="#" @click="mode = 'request-reset'") Forget password?
@@ -22,6 +24,14 @@
 const actions = {
   cancel: {
     enabled: false
+  }
+}
+
+const settings = {
+  props: {
+    form: {
+      autofocus: false
+    }
   }
 }
 
@@ -56,13 +66,15 @@ export default {
     mode: 'initial',
     errors: [],
     fields,
-    formData: {}
+    formData: {},
+    settings
   }),
   methods: {
     onSubmit () {
       this.errors = []
       this.$api.put(`auth/update-password`, this.formData).then(response => {
         this.$q.notify('Password updated')
+        this.reset()
         this.$emit('done')
       }).catch(error => {
         try {
@@ -77,6 +89,10 @@ export default {
     },
     sendResetPassword () {
       console.log('here')
+    },
+    reset () {
+      this.formData = {}
+      this.$refs.form.$refs.form.reset()
     }
   }
 }

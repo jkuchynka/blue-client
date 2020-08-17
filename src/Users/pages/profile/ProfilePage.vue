@@ -1,17 +1,13 @@
 <template lang="pug">
-  q-page.user-profile
-    .row.items-baseline(v-if="!loading")
-      q-avatar(rounded size="100px")
-        img(:src="userImage")
-      .text-h1.heading.username {{ user.username }}
-    div.relative-position
-      items-list(:model="user", :exclude-keys="['image']")
-        template(v-slot:Roles-value)
-          q-badge.q-mr-sm(v-for="role in user.roles" :key="`role-${role.id}`" color="secondary") {{ role.display_name }}
-      div.q-my-md(v-if="!loading")
-        q-btn(:to="`/user/${user.username}/edit`" color="grey") Edit
+q-page.user-profile
+  .row.items-baseline(v-if="!loading")
+    .text-h1.heading.username {{ user.username }}
+  div.relative-position
+    items-list(:model="user", :exclude-keys="['image']")
+      template(v-slot:Roles-value)
+        q-badge.q-mr-sm(v-for="role in user.roles" :key="`role-${role.id}`" color="secondary") {{ role.display_name }}
 
-    app-loading(:loading="loading")
+  app-loading(:loading="loading")
 </template>
 <script>
 import ItemsList from '@/Admin/components/ItemsList'

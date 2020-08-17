@@ -2,7 +2,7 @@
 .user-profile-form
   blue-form(
     v-model="user"
-    title="Edit Profile"
+    title="Settings"
     :fields="fields"
     :errors="errors"
     :actions="actions"
@@ -18,7 +18,13 @@ const actions = {
   }
 }
 
-const settings = {}
+const settings = {
+  props: {
+    form: {
+      autofocus: false
+    }
+  }
+}
 
 const fields = [
   {

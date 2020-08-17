@@ -8,9 +8,10 @@ import to from 'to-case'
  * @param Model
  * @return array
  */
-export function itemsFromModel (Model) {
+export function itemsFromModel (Model, excludeKeys = []) {
   let items = []
-  Object.keys(Model).forEach(key => {
+  const keys = Object.keys(Model).filter(key => !excludeKeys.find(excludeKey => excludeKey === key))
+  keys.forEach(key => {
     let value = Model[key]
     // Convert dates from *_at fields
     if (key.match(/_at$/)) {

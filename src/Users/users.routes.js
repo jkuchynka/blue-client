@@ -3,9 +3,23 @@ const routes = [
   {
     path: '/user',
     component: () => import('@/App/layouts/AppLayout.vue'),
+    props: {
+      hasDrawerLeft: true
+    },
     children: [
-      { path: ':userName', name: 'usersProfile', component: () => import('@/Users/pages/UserProfile.vue') },
-      { path: ':userName/edit', name: 'usersProfileEdit', component: () => import('@/Users/pages/UserProfileEdit.vue') }
+      {
+        path: ':userName',
+        components: {
+          default: () => import('@/Users/layouts/ProfileLayout.vue'),
+          drawerLeft: () => import('@/Users/components/ProfileNav.vue')
+        },
+        children: [
+          { path: '', name: 'UsersProfile', component: () => import('@/Users/pages/profile/ProfilePage.vue') },
+          { path: 'password', name: 'UsersProfilePassword', component: () => import('@/Users/pages/profile/PasswordPage.vue') },
+          { path: 'plans', name: 'UsersProfilePlans', component: () => import('@/Users/pages/profile/PlansPage.vue') },
+          { path: 'settings', name: 'UsersProfileSettings', component: () => import('@/Users/pages/profile/SettingsPage.vue') }
+        ]
+      }
     ]
   },
   {

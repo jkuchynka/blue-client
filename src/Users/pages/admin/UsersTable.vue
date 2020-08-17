@@ -24,6 +24,12 @@
       template(v-slot:body-cell-roles="props")
         div
           q-badge.q-mr-sm(v-for="role in props.props.row.roles" :key="`role-${role.id}`" color="secondary") {{ role.display_name }}
+
+      template(v-slot:body-cell-name="props")
+        q-avatar.q-mr-sm(rounded size="40px")
+          img(:src="userImage(props.props.row)")
+        | {{ props.props.row.name }}
+
 </template>
 <script>
 
@@ -175,6 +181,12 @@ export default {
     this.loadFilterSets(this.filterSetsGroup)
   },
   methods: {
+    userImage (user) {
+      if (user.image) {
+        return 'http://localhost:8844/api/files/' + user.image.id + '/image'
+      }
+      return '/statics/kitty.jpg'
+    },
     onAction (action, props, resolve, reject) {
       console.log('action', action)
       switch (action) {
@@ -204,7 +216,7 @@ export default {
     },
     onRequest (params, resolve, reject) {
       let requestParams = this.setupRequestParams(params)
-      requestParams.include = 'roles'
+      requestParams.include = ['image', 'roles']
       api.get('users', {
         params: requestParams
       }).then(response => {
